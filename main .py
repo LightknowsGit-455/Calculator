@@ -55,17 +55,19 @@ class Calculator(ctk.CTk):
                 self.entry.delete(0, ctk.END)
 
             elif text == "=":
-                    expression = self.entry.get().replace("×", "*").replace ("÷", "/").replace("^", "**").replace("%", "/100")
-                    result = eval(expression)
-                    self.entry.delete(0, ctk.END)
-                    self.entry.insert(0, str(result))
-                    self.result_displayed = True
+                expression = self.entry.get().replace("×", "*").replace ("÷", "/").replace("^", "**").replace("%", "/100")
+                result = eval(expression)
+                self.entry.delete(0, ctk.END)
+                self.entry.insert(0, str(result))
+                self.result_displayed = True
 
-            elif text in ["+", "-", "×", "÷", "^", "%"]:
+             
+
+            elif text in ["+", "-", "×", "÷", "^"]:
 
                 current_text = self.entry.get()
 
-                operators = [" + ", " - ", " × ", " ÷ ", " ^ ", " % "]
+                operators = [" + ", " - ", " × ", " ÷ ", " ^ "]
 
                 if any(current_text.endswith(op) for op in operators):
 
