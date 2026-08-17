@@ -54,18 +54,30 @@ class Calculator(ctk.CTk):
             if text == "C":
                 self.entry.delete(0, ctk.END)
 
-            elif text == "=":
-                    expression = self.entry.get().replace("×", "*").replace ("÷", "/").replace("^", "**").replace("%", "/100")
-                    result = eval(expression)
-                    self.entry.delete(0, ctk.END)
-                    self.entry.insert(0, str(result))
-                    self.result_displayed = True
+            elif text == "=":    
+                expression = self.entry.get().replace("×", "*").replace ("÷", "/").replace("^", "**")
+                if expression.endswith("%"):
+                    expression = expression[:-1] + "/100"
+                else:
+                    expression = expression.replace("%", "/100*")
+                result = eval(expression)
+                self.entry.delete(0, ctk.END)
+                self.entry.insert(0, str(result))
+                self.result_displayed = True
 
-            elif text in ["+", "-", "×", "÷", "^", "%"]:
+            elif text == "%":
+                current_text = self.entry.get()
+                if current_text and not current_text.endswith("%"):
+                    self.entry.insert(ctk.END, "%")
+                    self.result_displayed = False
+
+
+
+            elif text in ["+", "-", "×", "÷", "^"]:
 
                 current_text = self.entry.get()
 
-                operators = [" + ", " - ", " × ", " ÷ ", " ^ ", " % "]
+                operators = ["+", "-", "×", "÷", "^"]
 
                 if any(current_text.endswith(op) for op in operators):
 
