@@ -1,2 +1,2 @@
 # Calculator
-It is a well gui calculator which can common multiplication, addition, substraction and division.
+A well maintained gui calculator made in Python which can perform common multiplication, addition, subtraction and division.
