@@ -93,7 +93,10 @@ class Calculator(ctk.CTk):
 
             elif text == "←":
                 current_text = self.entry.get()
-                new_text = current_text[:-1]
+                if current_text.endswith(" "):
+                    new_text = current_text[:-3]
+                else:
+                    new_text = current_text[:-1]
                 self.entry.delete(0, ctk.END)
                 self.entry.insert(0, new_text)
                 self.result_displayed = False
